@@ -14,13 +14,6 @@ namespace HiyokoJishoTestsCSharpVersion
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World.");
-
-            IWebDriver driver = new ChromeDriver();
-            driver.Navigate().GoToUrl("https://www.google.com");
-            driver.FindElement(By.Name("q")).SendKeys("Hello World");
-            driver.Quit();
-            //driver.Navigate().GoToUrl("https://www.hiyokojisho.org");
-
         }
     }
 }
