@@ -2,6 +2,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
+using SeleniumExtras;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,19 +21,6 @@ namespace HiyokoJishoTestsCSharpVersion
         {
             return this.driver;
         }
-        /*TODO: implement the following commands but in C# code
-         * private static Wait <WebDriver> wait = null;
-         private static Wait <WebDriver> elementExistsWait = null;
-
-         // Default wait time
-         private static final int WAIT_TIME = 60;
-
-         // Default poll interval
-         private static final int POLL_INTERVAL = 1;
-
-         // Wait time to check if an element exists
-         private static final int ELEMENT_EXISTS_WAIT_TIME = 5;
-         */
 
         public NavigationHelper()
         {
@@ -47,20 +35,31 @@ namespace HiyokoJishoTestsCSharpVersion
             driver.Navigate().GoToUrl(url);
         }
 
-        public void clickElement(By locator)
+        public void ClickElement(By locator)
         {
             driver.FindElement(locator).Click();
         }
 
-        public void input(By locator, String input)
+        public void KeyInput(By locator, String input)
         {
             driver.FindElement(locator).SendKeys(input);
         }
 
-        public Boolean isElementPresent(By locator)
+        public Boolean IsElementPresent(By locator)
         {
-            //TODO: Finish this method
-            return false;
+            IWebElement element = new WebDriverWait(driver, TimeSpan.FromSeconds(WAIT_TIME)).Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(locator));
+            return element != null;
+        }
+
+        public Boolean IsElementClickable(By locator)
+        {
+            IWebElement element = new WebDriverWait(driver, TimeSpan.FromSeconds(WAIT_TIME)).Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(locator));
+            return element != null;
+        }
+
+        public String GetCurrentURL()
+        {
+            return driver.Url;
         }
 
     }
