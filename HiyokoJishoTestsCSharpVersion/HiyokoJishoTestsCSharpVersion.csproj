@@ -59,7 +59,7 @@
   <ItemGroup>
     <Compile Include="HiyokoJishoMainPage.cs" />
     <Compile Include="NavigationHelper.cs" />
-    <Compile Include="TestClasses\NUnitTemplateTests.cs" />
+    <Compile Include="TestClasses\homepage_and_external_links.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
